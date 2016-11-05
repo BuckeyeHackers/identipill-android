@@ -18,23 +18,23 @@
         android:textColor="?android:attr/colorPressedHighlight"
         android:textStyle="normal|bold"
         android:textSize="24sp"
-        android:background="@android:drawable/screen_background_light_transparent"
-        android:backgroundTint="@android:drawable/screen_background_light_transparent"
+        android:background="@null"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:onClick="goToSettings"/>
 
     <Button
         android:text="Skip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/button2"
-        android:backgroundTint="@android:drawable/screen_background_light_transparent"
-        android:background="@android:drawable/screen_background_light_transparent"
+        android:background="@null"
         android:textSize="22sp"
         android:layout_marginEnd="65dp"
         android:layout_alignBaseline="@+id/button"
         android:layout_alignBottom="@+id/button"
-        android:layout_toStartOf="@+id/button" />
+        android:layout_toStartOf="@+id/button"
+        android:onClick="goToCamera"/>
 
     <TextView
         android:text="Welcome to IdentiPill"

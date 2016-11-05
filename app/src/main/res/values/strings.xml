@@ -75,4 +75,10 @@
     <string name="physician_calls">Physician Calls</string>
     <string name="text_emergency_contacts">Text Emergency Contacts</string>
     <string name="keep_records">Keep Records</string>
+    <string name="title_activity_main_nav">MainNav</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
 </resources>
