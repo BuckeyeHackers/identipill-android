@@ -75,4 +75,11 @@
     <string name="physician_calls">Physician Calls</string>
     <string name="text_emergency_contacts">Text Emergency Contacts</string>
     <string name="keep_records">Keep Records</string>
+    <string name="wireless_networks"><![CDATA[Wireless & networks]]></string>
+    <string name="wireless_and_networks"><![CDATA[Wireless & Networks]]></string>
+    <string name="voice">Voice</string>
+    <string name="device">Device</string>
+    <string name="display">Display</string>
+    <string name="sound">Sound</string>
+    <string name="wireless_and_networks_2"><![CDATA[Wireless & Networks]]></string>
 </resources>
