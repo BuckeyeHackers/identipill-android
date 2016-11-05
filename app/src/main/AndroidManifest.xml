@@ -11,21 +11,21 @@
         <activity android:name=".SettingsActivity" />
         <activity android:name=".AddContactsActivity" />
         <activity android:name=".IntroActivity">
+        </activity>
+        <activity android:name=".CameraActivity" />
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/title_activity_main"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".MainNavActivity"
+            android:label="@string/title_activity_main_nav"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity android:name=".CameraActivity" />
-        <activity
-            android:name=".MainNav"
-            android:label="@string/title_activity_main_nav"
-            android:parentActivityName=".CameraActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.buckhacks.identipill.CameraActivity" />
         </activity>
     </application>
 
