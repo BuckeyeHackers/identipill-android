@@ -48,7 +48,6 @@
             android:id="@+id/imageButton"
             android:layout_gravity="right|bottom" />
 
-
     </FrameLayout>
 
 </RelativeLayout>
