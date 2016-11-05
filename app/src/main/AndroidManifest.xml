@@ -11,6 +11,11 @@
         <activity android:name=".SettingsActivity" />
         <activity android:name=".AddContactsActivity" />
         <activity android:name=".IntroActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".CameraActivity" />
         <activity
@@ -21,11 +26,7 @@
             android:name=".MainNavActivity"
             android:label="@string/title_activity_main_nav"
             android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 
