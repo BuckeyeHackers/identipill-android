@@ -143,7 +143,8 @@ public class CameraActivity extends AppCompatActivity {
 
                 try {
                     params.put("pill", myFile);
-                } catch(FileNotFoundException e) {}
+                } catch (FileNotFoundException e) {
+                }
 
                 ArrayList<String> numbers = new ArrayList<>();
                 numbers.add("3307740777");
@@ -203,126 +204,6 @@ public class CameraActivity extends AppCompatActivity {
                         // called when request is retried
                     }
                 });
-            }
-        }
-    }
-
-    private final String SERVER_URL = "https://localhost:3000/api/identipill";
-
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
-    public Action getIndexApiAction() {
-        Thing object = new Thing.Builder()
-                .setName("Camera Page") // TODO: Define a title for the content shown.
-                // TODO: Make sure this auto-generated URL is correct.
-                .setUrl(Uri.parse("http://[ENTER-YOUR-URL-HERE]"))
-                .build();
-        return new Action.Builder(Action.TYPE_VIEW)
-                .setObject(object)
-                .setActionStatus(Action.STATUS_TYPE_COMPLETED)
-                .build();
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client.connect();
-        AppIndex.AppIndexApi.start(client, getIndexApiAction());
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        AppIndex.AppIndexApi.end(client, getIndexApiAction());
-        client.disconnect();
-    }
-
-    private class uploadFileToServerTask extends AsyncTask<String, String, Object> {
-
-
-        @Override
-        protected String doInBackground(String... args) {
-            try {
-                String lineEnd = "\r\n";
-                String twoHyphens = "--";
-                String boundary = "*****";
-                int bytesRead, bytesAvailable, bufferSize;
-                byte[] buffer;
-                @SuppressWarnings("PointlessArithmeticExpression")
-                int maxBufferSize = 1 * 1024 * 1024;
-
-                URL url = new URL(SERVER_URL);
-                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-
-                // Allow Inputs &amp; Outputs.
-                connection.setDoInput(true);
-                connection.setDoOutput(true);
-                connection.setUseCaches(false);
-
-                // Set HTTP method to POST.
-                connection.setRequestMethod("POST");
-
-                connection.setRequestProperty("Connection", "Keep-Alive");
-                connection.setRequestProperty("Content-Type", "multipart/form-data;boundary=" + boundary);
-
-                FileInputStream fileInputStream;
-                DataOutputStream outputStream;
-                {
-                    outputStream = new DataOutputStream(connection.getOutputStream());
-
-                    outputStream.writeBytes(twoHyphens + boundary + lineEnd);
-                    String filename = args[0];
-                    outputStream.writeBytes("Content-Disposition: form-data; name=\"file\";filename=\"" + filename + "\"" + lineEnd);
-                    outputStream.writeBytes(lineEnd);
-
-                    fileInputStream = new FileInputStream(filename);
-
-                    bytesAvailable = fileInputStream.available();
-                    bufferSize = Math.min(bytesAvailable, maxBufferSize);
-
-                    buffer = new byte[bufferSize];
-
-                    // Read file
-                    bytesRead = fileInputStream.read(buffer, 0, bufferSize);
-
-                    while (bytesRead > 0) {
-                        outputStream.write(buffer, 0, bufferSize);
-                        bytesAvailable = fileInputStream.available();
-                        bufferSize = Math.min(bytesAvailable, maxBufferSize);
-                        bytesRead = fileInputStream.read(buffer, 0, bufferSize);
-                    }
-                    outputStream.writeBytes(lineEnd);
-                    outputStream.writeBytes(twoHyphens + boundary + twoHyphens + lineEnd);
-                }
-
-                int serverResponseCode = connection.getResponseCode();
-                String serverResponseMessage = connection.getResponseMessage();
-
-                fileInputStream.close();
-                outputStream.flush();
-                outputStream.close();
-
-                if (serverResponseCode == 200) {
-                    return "true";
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return "false";
-        }
-
-        @Override
-        protected void onPostExecute(Object result) {
-            if (result.equals("true")) {
-               /* tou action here */
             }
         }
     }
