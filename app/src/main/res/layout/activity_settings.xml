@@ -20,8 +20,8 @@
         android:layout_marginTop="58dp"
         android:layout_marginLeft="70dp"
         android:textColor="@color/black"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true" />
 
     <Switch
         android:text="@string/text_emergency_contacts"
@@ -58,7 +58,7 @@
         android:id="@+id/editText4" />
 
     <TextView
-        android:text="Device"
+        android:text="Additional Information"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textMultiLine"
@@ -68,41 +68,21 @@
         android:layout_marginTop="20dp"
         android:id="@+id/secondTitle" />
 
-    <Switch
-        android:text="Voice"
-        android:layout_width="wrap_content"
+    <EditText
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/secondTitle"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="20dp"
-        android:id="@+id/voice"
-        android:layout_marginLeft="70dp"
-        android:layout_marginRight="0dp"
-        android:layout_alignParentEnd="true" />
+        android:hint="Your Name"
+        android:id="@+id/nameText"
+        android:layout_marginTop="30dp"
+        android:layout_alignTop="@+id/secondTitle" />
 
-    <Switch
-        android:text="Sound"
-        android:layout_width="wrap_content"
+    <EditText
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/voice"
-        android:layout_alignParentStart="true"
-        android:id="@+id/sound"
-        android:layout_marginLeft="70dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="0dp"
-        android:layout_alignParentEnd="true" />
-
-    <Switch
-        android:text="Display"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/sound"
-        android:layout_alignParentStart="true"
-        android:id="@+id/display"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="70dp"
-        android:layout_marginRight="0dp"
-        android:layout_alignParentEnd="true" />
+        android:hint="Emergency Contacts (comma separated)"
+        android:id="@+id/numbersText"
+        android:layout_marginTop="50dp"
+        android:layout_alignTop="@+id/nameText" />
 
     <Button
         android:text="CONTINUE"
@@ -121,6 +101,8 @@
         android:id="@android:id/list"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="invisible" />
+        android:visibility="invisible"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>
