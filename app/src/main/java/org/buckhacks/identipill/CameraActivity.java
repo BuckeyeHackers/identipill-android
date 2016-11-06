@@ -73,11 +73,17 @@ public class CameraActivity extends AppCompatActivity {
     private TextView mPillNameTextView;
     private boolean mMusicPlaying;
     private TextToSpeech mTts;
+    private String name;
+    private String numbers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera);
+
+        Intent intent = getIntent();
+        name = intent.getStringExtra("name");
+        numbers = intent.getStringExtra("numbers");
 
         Button mTakePicture = (Button) findViewById(R.id.take_photo);
 
@@ -153,10 +159,14 @@ public class CameraActivity extends AppCompatActivity {
                 } catch (FileNotFoundException e) {
                 }
 
-                ArrayList<String> numbers = new ArrayList<>();
-                numbers.add("3307740777");
-                params.put("numbers", numbers);
-                params.put("name", "Grandma Unkrich");
+                ArrayList<String> numbersArray = new ArrayList<>();
+
+                for (String num : numbers.split(",")) {
+                    numbersArray.add(num);
+                }
+
+                params.put("numbers", numbersArray);
+                params.put("name", name);
 
                 client.post("https://identipill.herokuapp.com/api/identipill/", params, new AsyncHttpResponseHandler() {
 
