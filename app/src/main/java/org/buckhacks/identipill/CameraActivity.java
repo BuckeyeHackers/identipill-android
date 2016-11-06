@@ -158,7 +158,7 @@ public class CameraActivity extends AppCompatActivity {
                 params.put("numbers", numbers);
                 params.put("name", "Grandma Unkrich");
 
-                client.post("http://identipill.ngrok.io/api/identipill/", params, new AsyncHttpResponseHandler() {
+                client.post("https://identipill.herokuapp.com/api/identipill/", params, new AsyncHttpResponseHandler() {
 
                     @Override
                     public void onStart() {
