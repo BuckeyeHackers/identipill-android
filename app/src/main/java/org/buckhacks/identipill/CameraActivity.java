@@ -24,6 +24,7 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.provider.Settings;
 
+import android.speech.tts.TextToSpeech;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -70,7 +71,8 @@ public class CameraActivity extends AppCompatActivity {
     private GoogleApiClient client;
     private Button mPlayAudioButton;
     private TextView mPillNameTextView;
-    private MediaPlayer player;
+    private boolean mMusicPlaying;
+    private TextToSpeech mTts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,8 +84,13 @@ public class CameraActivity extends AppCompatActivity {
         mPillNameTextView = (TextView) findViewById(R.id.pillName);
         mPlayAudioButton = (Button) findViewById(R.id.say_pill_name);
 
-        player = new MediaPlayer();
-        player.setAudioStreamType(AudioManager.STREAM_MUSIC);
+        mTts = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int i) {
+
+            }
+        });
+
 
         mTakePicture.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -167,29 +174,19 @@ public class CameraActivity extends AppCompatActivity {
 
                         Log.v(Integer.toString(statusCode), resp);
 
-                        JsonObject jsonObject = new JsonParser().parse(resp).getAsJsonObject();
+                        final JsonObject jsonObject = new JsonParser().parse(resp).getAsJsonObject();
 
-                        final String pillAudioURL = jsonObject.get("data").getAsJsonObject().get("pillAudio").getAsString();
+                        final String pillName = jsonObject.get("data").getAsJsonObject().get("pillName").getAsString();
+                        final char[] pillNameChar = pillName.toCharArray();
 
                         mPlayAudioButton.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                try {
-                                    Log.v("200", "http://identipill.ngrok.io/" + pillAudioURL);
-                                    player.setDataSource("http://identipill.ngrok.io/" + pillAudioURL);
-                                    player.prepare();
-                                } catch (Exception e) {
-                                    // TODO Auto-generated catch block
-                                    e.printStackTrace();
-                                }
-
-                                player.start();
+                                mTts.speak("Your pill was " + pillName, TextToSpeech.QUEUE_FLUSH, null, pillName);
                             }
                         });
 
-                        char[] pillName = jsonObject.get("data").getAsJsonObject().get("pillName").getAsString().toCharArray();
-
-                        mPillNameTextView.setText(pillName, 0, pillName.length);
+                        mPillNameTextView.setText(pillNameChar, 0, pillNameChar.length);
                     }
 
                     @Override
